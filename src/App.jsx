@@ -8,6 +8,7 @@ import CartPage from './pages/LandingPages/CartPage.jsx';
 import SignInPage from './pages/AuthPages/SignInPage.jsx';
 import SignUpPage from './pages/AuthPages/SignUpPage.jsx';
 import ProtectedRoute from './pages/AuthPages/ProtectedRoute.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
+
+          {/* 404 route */}
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

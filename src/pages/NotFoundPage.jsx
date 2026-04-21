@@ -1,4 +1,4 @@
-import Button from '../components/Button';
+import Button from '../components/Button.jsx';
 
 const NotFoundPage = () => {
   return (
@@ -26,15 +26,17 @@ const NotFoundPage = () => {
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-500">
             Quick Links
           </p>
-          <h2 className="mt-2 text-2xl font-semibold text-zinc-900">Explore the site</h2>
-          
+          <h2 className="mt-2 text-2xl font-semibold text-zinc-900">
+            Explore the site
+          </h2>
+
           <div className="mt-6 space-y-3">
             <div className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
               <h3 className="font-semibold text-zinc-900">Home</h3>
               <p className="mt-1 text-sm text-zinc-600">Return to the homepage</p>
               <Button to="/" className="mt-3">Go Home</Button>
             </div>
-            
+
             <div className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
               <h3 className="font-semibold text-zinc-900">Products</h3>
               <p className="mt-1 text-sm text-zinc-600">Browse all featured store items</p>
@@ -44,7 +46,7 @@ const NotFoundPage = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;
