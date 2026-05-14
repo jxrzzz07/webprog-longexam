@@ -6,6 +6,7 @@ const links = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Products', to: '/products' },
+  {label: 'Dashboard', to: '/dashboard'},
 ];
 
 const navLinkClassName = ({ isActive }) =>
