@@ -16,6 +16,14 @@ const navLinkClassName = ({ isActive }) =>
       : 'border-zinc-900 bg-white text-zinc-900 shadow-[4px_4px_0px_#236192] hover:shadow-[4px_4px_0px_#FFF000] hover:-translate-y-1 active:scale-95',
   ].join(' ');
 
+const signUpClassName = ({ isActive }) =>
+  [
+    'rounded-full border-2 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] transition-all duration-200',
+    isActive
+      ? 'border-zinc-900 bg-[#236192] text-white shadow-[4px_4px_0px_#0f3d63]'
+      : 'border-zinc-900 bg-zinc-900 text-white shadow-[4px_4px_0px_#236192] hover:shadow-[4px_4px_0px_#FFF000] hover:-translate-y-1 active:scale-95',
+  ].join(' ');
+
 const NavBar = () => {
   const { cartItems } = useCart();
 
@@ -34,14 +42,16 @@ const NavBar = () => {
           </div>
 
           <div>
-            <p className="text-lg font-bold text-zinc-900">National-U Bulldog Exshop</p>
+            <p className="text-lg font-bold text-zinc-900">
+              National-U Bulldog Exshop
+            </p>
             <p className="text-[10px] uppercase tracking-[0.25em] text-zinc-500">
               Campus Store
             </p>
           </div>
         </NavLink>
 
-        <nav className="flex items-center gap-2">
+        <nav className="flex flex-wrap items-center justify-end gap-2">
           {links.map((link) => (
             <NavLink
               key={link.to}
@@ -55,6 +65,14 @@ const NavBar = () => {
 
           <NavLink to="/cart" className={navLinkClassName}>
             Cart ({totalItems})
+          </NavLink>
+
+          <NavLink to="/auth/signin" className={navLinkClassName}>
+            Sign In
+          </NavLink>
+
+          <NavLink to="/auth/signup" className={signUpClassName}>
+            Sign Up
           </NavLink>
         </nav>
       </div>

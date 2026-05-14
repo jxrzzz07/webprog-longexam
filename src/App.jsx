@@ -1,41 +1,68 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './layouts/Layout.jsx';
-import HomePage from './pages/LandingPages/HomePage.jsx';
-import AboutPage from './pages/LandingPages/AboutPage.jsx';
-import ProductListPage from './pages/LandingPages/ProductListPage.jsx';
-import ProductPage from './pages/LandingPages/ProductPage.jsx';
-import CartPage from './pages/LandingPages/CartPage.jsx';
-import SignInPage from './pages/AuthPages/SignInPage.jsx';
-import SignUpPage from './pages/AuthPages/SignUpPage.jsx';
-import ProtectedRoute from './pages/AuthPages/ProtectedRoute.jsx';
-import NotFoundPage from './pages/NotFoundPage.jsx';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Layout from "./layouts/Layout";
+import ProductPage from "./pages/LandingPages/ProductPage";
+import HomePage from "./pages/LandingPages/HomePage";
+import AboutPage from "./pages/LandingPages/AboutPage";
+import ProductListPage from "./pages/LandingPages/ProductListPage";
+
+import AuthLayout from "./layouts/AuthLayout";
+import SignInPage from "./pages/AuthPages/SignInPage";
+import SignUpPage from "./pages/AuthPages/SignUpPage";
+
+import NotFoundPage from "./pages/NotFoundPage";
+
+const routes = [
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
+      {
+        path: "products",
+        element: <ProductListPage />,
+      },
+      {
+        path: "products/:name",
+        element: <ProductPage />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
+      },
+    ],
+  },
+
+  {
+    path: "/auth/signin",
+    element: (
+      <AuthLayout>
+        <SignInPage />
+      </AuthLayout>
+    ),
+  },
+
+  {
+    path: "/auth/signup",
+    element: (
+      <AuthLayout>
+        <SignUpPage />
+      </AuthLayout>
+    ),
+  },
+];
+
+const router = createBrowserRouter(routes);
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/products" element={<ProductListPage />} />
-          <Route path="/products/:name" element={<ProductPage />} />
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute>
-                <CartPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-
-          {/* 404 route */}
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
